@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         getDatabase();
-
         checkForUser();
+
     }
 
     private void checkForUser() {
@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         if(mUserId != -1){
             return;
         }
-
 
         if(mPreferences == null) {
             getPrefs();
