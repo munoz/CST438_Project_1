@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
                         Intent intent = MainActivity.intentFactory(getApplicationContext(), mUser.getUserId());
                         startActivity(intent);
                     }
-                };
+                }
             }
         });
 
@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getValuesFromDisplay();
-                if(mUsername.equals(mPokedexDAO.getUserByUsername(mUsername).getUserName())) {
+                if(checkForUserInDatabase()) {
                     Toast.makeText(LoginActivity.this, "User already exists", Toast.LENGTH_SHORT).show();
                 } else{
                     mUser = new User(mUsername, mPassword);
