@@ -7,8 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+
 
 import com.example.cst438_project_1.db.AppDatabase;
 import com.example.cst438_project_1.db.PokedexDAO;
@@ -35,12 +34,7 @@ public class MainActivity extends AppCompatActivity {
         getDatabase();
         checkForUser();
 
-        Spinner mySpinner = (Spinner) findViewById(R.id.typeResponse);
 
-        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(MainActivity.this,
-                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.types));
-        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mySpinner.setAdapter(myAdapter);
 
     }
 
