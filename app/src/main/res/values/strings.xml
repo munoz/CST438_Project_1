@@ -4,6 +4,8 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="create">Create</string>
+    <string name="welcome_to_pok_dex">Welcome to Pokédex</string>
+    <string name="search">Search</string>
 
     <string-array name="types">
         <item>Bug</item>
