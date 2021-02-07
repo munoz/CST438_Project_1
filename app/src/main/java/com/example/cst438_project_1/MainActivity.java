@@ -7,6 +7,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 
 import com.example.cst438_project_1.db.AppDatabase;
@@ -18,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String USER_ID_KEY = "com.example.cst438_project_1.userIdKey";
     private static final String PREFERENCES_KEY = "com.example.cst438_project_1.PREFERENCES_KEY";
+
+    private Button mButtonSearch;
 
     private int mUserId = -1;
     private PokedexDAO mPokedexDAO;
@@ -31,11 +36,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        wireupDisplay();
         getDatabase();
         checkForUser();
 
+    }
 
+    private void wireupDisplay() {
 
+        mButtonSearch = findViewById(R.id.buttonSearch);
+        mButtonSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = SearchActivity.intentFactory(getApplicationContext(), mUserId);
+                startActivity(intent);
+            }
+        });
     }
 
     private void checkForUser() {
@@ -57,13 +73,6 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        //do we have any users at all
-        List<User> users = mPokedexDAO.getAllUsers();
-        if(users.size() <= 0){
-            User defaultUser = new User("daclink", "dac123");
-            User altUser = new User("drew", "dac123");
-            mPokedexDAO.insert(defaultUser);
-        }
 
         Intent intent = LoginActivity.intentFactory(this);
         startActivity(intent);
