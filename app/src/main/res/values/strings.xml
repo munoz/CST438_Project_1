@@ -4,4 +4,26 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="create">Create</string>
+
+    <string-array name="types">
+        <item>Bug</item>
+        <item>Dark</item>
+        <item>Dragon</item>
+        <item>Electric</item>
+        <item>Fairy</item>
+        <item>Fighting</item>
+        <item>Fire</item>
+        <item>Flying</item>
+        <item>Ground</item>
+        <item>Grass</item>
+        <item>Ghost</item>
+        <item>Ice</item>
+        <item>Normal</item>
+        <item>Poison</item>
+        <item>Water</item>
+        <item>Psychic</item>
+        <item>Rock</item>
+        <item>Steel</item>
+
+    </string-array>
 </resources>
