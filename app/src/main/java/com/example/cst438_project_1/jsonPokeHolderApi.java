@@ -13,4 +13,8 @@ public interface jsonPokeHolderApi {
 
     @GET("pokemon/{id}")
     Call<List<Pokemon>> getPokemon(@Path("id") int pokemonId);
+
+    @GET("type/{type}")
+    Call<List<Type>> getPokemonType(@Path("type") String pokemonType);
+
 }
