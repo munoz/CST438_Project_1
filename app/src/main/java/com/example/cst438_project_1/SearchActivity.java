@@ -40,6 +40,7 @@ public class SearchActivity extends AppCompatActivity {
 
         mButtonGo =  findViewById(R.id.goButton);
         mButtonGo.setOnClickListener(new View.OnClickListener(){
+            @Override
             public void onClick(View view)
             {
                 search();
