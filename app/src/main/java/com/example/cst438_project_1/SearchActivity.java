@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,9 +14,21 @@ import android.widget.TextView;
 import android.widget.Button;
 import android.content.SharedPreferences;
 
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 import org.w3c.dom.Text;
 
 import java.text.Normalizer;
+import java.util.List;
+
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import com.example.cst438_project_1.jsonPokeHolderApi;
 
 
 public class SearchActivity extends AppCompatActivity {
@@ -55,28 +68,46 @@ public class SearchActivity extends AppCompatActivity {
         return intent;
     }
 
-
-
     public void search()
     {
         String search;
         Spinner type = (Spinner) findViewById(R.id.typeResponse);
         TextView results = (TextView) findViewById(R.id.Results);
 
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://pokeapi.co/api/v2/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        jsonPokeHolderApi jsonPlaceHolderApi = retrofit.create(jsonPokeHolderApi.class);
+
         TextView searchBar = (TextView) findViewById(R.id.searchResponse);
-        if(searchBar.getText().toString().equals(""))
-        {
-            int location = type.getSelectedItemPosition();
+        search = searchBar.getText().toString();
 
-            results.setText(location);
-        }
-        else
-        {
-            search = searchBar.getText().toString();
-            results.setText(search);
-        }
+        Call<Pokemon> call = jsonPlaceHolderApi.getPokemon(search);
+        call.enqueue(new Callback<Pokemon>() {
+            @Override
+            public void onResponse(Call<Pokemon> call, Response<Pokemon> response) {
+                if (!response.isSuccessful()) {
+                    results.setText("Code: " + response.code());
+                    return;
+                }
+                Pokemon pokemon = response.body();
+                String content = "";
+                content += "Pokemon: " + pokemon.getName() + "\n";
+                content += "ID: " + pokemon.getId() + "\n";
+                content += "Height: " + pokemon.getHeight() + "\n";
+                content += "Weight: " + pokemon.getWeight() + "\n";
+                results.append(content);
 
-        String url = "https://pokeapi.co/api/v2/";
+            }
+            @Override
+            public void onFailure(Call<Pokemon> call, Throwable t) {
+                results.setText(t.getMessage());
+            }
+        });
+
+
 
 
     }

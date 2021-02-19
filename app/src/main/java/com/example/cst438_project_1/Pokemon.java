@@ -1,35 +1,29 @@
 package com.example.cst438_project_1;
 
-import java.util.List;
-
 public class Pokemon {
     private String name;
+    private String height;
+    private String weight;
+    private String id;
 
-    private int id;
-
-    private List<String> types;
-
-    private int height;
-
-    private int weight;
+    public Pokemon() {
+    }
 
     public String getName() {
         return name;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public List<String> getTypes() {
-        return types;
-    }
-
-    public int getHeight() {
+    public String getHeight() {
         return height;
     }
 
-    public int getWeight() {
+    public String getWeight() {
         return weight;
     }
+
+    public String getId() {
+        return id;
+    }
 }
+
+
