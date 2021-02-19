@@ -12,12 +12,13 @@ import android.widget.Button;
 import android.widget.Toast;
 
 
+
 import com.example.cst438_project_1.db.AppDatabase;
 import com.example.cst438_project_1.db.PokedexDAO;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class   MainActivity extends AppCompatActivity {
 
     private static final String USER_ID_KEY = "com.example.cst438_project_1.userIdKey";
     private static final String PREFERENCES_KEY = "com.example.cst438_project_1.PREFERENCES_KEY";
