@@ -12,7 +12,7 @@ public interface jsonPokeHolderApi {
     Call<List<Pokemon>> getPokemon(@Path("name") String pokemonName);
 
     @GET("pokemon/{id}")
-    Call<List<Pokemon>> getPokemon(@Path("id") int pokemonId);
+    Call<Pokemon> getPokemon(@Path("id") int pokemonId);
 
     @GET("type/{type}")
     Call<List<Type>> getPokemonType(@Path("type") String pokemonType);
