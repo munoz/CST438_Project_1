@@ -54,7 +54,6 @@ public class SearchActivity extends AppCompatActivity {
             public void onClick(View view)
             {
                 search();
-
             }
         });
         mSaveButton = findViewById(R.id.saveButton);
@@ -65,13 +64,6 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    public static Intent intentFactory(Context context, int userId) {
-        Intent intent = new Intent(context, SearchActivity.class);
-        intent.putExtra(USER_ID_KEY, userId);
-
-        return intent;
     }
 
     public void search()
@@ -128,5 +120,12 @@ public class SearchActivity extends AppCompatActivity {
                 .build()
                 .getPokedexDAO();
 
+    }
+
+    public static Intent intentFactory(Context context, int userId) {
+        Intent intent = new Intent(context, SearchActivity.class);
+        intent.putExtra(USER_ID_KEY, userId);
+
+        return intent;
     }
 }

@@ -42,9 +42,9 @@ public interface PokedexDAO {
     void delete(Pokemon pokemon);
 
     @Query("SELECT * FROM " + AppDatabase.POKEMON_TABLE)
-    List<User> getAllPokemons();
+    List<Pokemon> getAllPokemons();
 
     @Query("SELECT * FROM " + AppDatabase.POKEMON_TABLE + "  WHERE mUserId = :userId")
-    User getPokemonByUserId(int userId);
+    List<Pokemon> getPokemonByUserId(int userId);
 
 }
