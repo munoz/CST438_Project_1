@@ -29,14 +29,12 @@ public class SearchActivity extends AppCompatActivity {
     private static final String USER_ID_KEY = "com.example.cst438_project_1.userIdKey";
     private static final String PREFERENCES_KEY = "com.example.cst438_project_1.PREFERENCES_KEY";
     private Button mButtonGo;
+    private Button mSaveButton;
     private int mUserId;
     private User mUser;
 
     private Pokemon mPokemon;
     private PokedexDAO mPokedexDAO;
-
-
-
 
 
     @Override
@@ -45,13 +43,6 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
 
         getDatabase();
-
-        Spinner type = (Spinner) findViewById(R.id.typeResponse);
-
-        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(SearchActivity.this,
-                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.types));
-        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        type.setAdapter(myAdapter);
 
         mUserId = getIntent().getIntExtra(USER_ID_KEY, -1);
         mUser = mPokedexDAO.getUserByUserId(mUserId);
@@ -63,12 +54,17 @@ public class SearchActivity extends AppCompatActivity {
             public void onClick(View view)
             {
                 search();
+
             }
         });
-//  TODO: onClick listerner for adding pokemon to db
-//        mPokemon = pokemonAPI;
-//        mPokemon.setUserId(mUserId);
-//        mPokedexDAO.insert(mPokemon);
+        mSaveButton = findViewById(R.id.saveButton);
+        mSaveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                save();
+            }
+        });
+
     }
 
     public static Intent intentFactory(Context context, int userId) {
@@ -81,7 +77,6 @@ public class SearchActivity extends AppCompatActivity {
     public void search()
     {
         String search;
-        Spinner type = (Spinner) findViewById(R.id.typeResponse);
         TextView results = (TextView) findViewById(R.id.Results);
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -110,7 +105,7 @@ public class SearchActivity extends AppCompatActivity {
                 content += "Weight: " + pokemonAPI.getWeight() + "\n";
 //                content += "Types: " + pokemon.getTypes() + "\n";
                 results.append(content);
-
+                mPokemon = pokemonAPI;
 
 
 
@@ -120,6 +115,11 @@ public class SearchActivity extends AppCompatActivity {
                 results.setText(t.getMessage());
             }
         });
+    }
+
+    public void save(){
+        mPokemon.setUserId(mUserId);
+        mPokedexDAO.insert(mPokemon);
     }
 
     private void getDatabase() {
