@@ -24,6 +24,7 @@ public class   MainActivity extends AppCompatActivity {
     private static final String PREFERENCES_KEY = "com.example.cst438_project_1.PREFERENCES_KEY";
 
     private Button mButtonSearch;
+    private Button mButtonView;
 
     private int mUserId = -1;
     private PokedexDAO mPokedexDAO;
@@ -50,6 +51,14 @@ public class   MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = SearchActivity.intentFactory(getApplicationContext(), mUserId);
+                startActivity(intent);
+            }
+        });
+        mButtonView = findViewById(R.id.viewSavedButton);
+        mButtonView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = ListActivity.intentFactory(getApplicationContext(), mUserId);
                 startActivity(intent);
             }
         });
