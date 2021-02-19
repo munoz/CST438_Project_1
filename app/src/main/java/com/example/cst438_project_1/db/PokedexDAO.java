@@ -7,6 +7,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.cst438_project_1.User;
+import com.example.cst438_project_1.Pokemon;
 
 import java.util.List;
 
@@ -30,5 +31,20 @@ public interface PokedexDAO {
 
     @Query("SELECT * FROM " + AppDatabase.USER_TABLE + "  WHERE mUserId = :userId")
     User getUserByUserId(int userId);
+
+    @Insert
+    void insert(Pokemon... pokemons);
+
+    @Update
+    void update(Pokemon... pokemons);
+
+    @Delete
+    void delete(Pokemon pokemon);
+
+    @Query("SELECT * FROM " + AppDatabase.POKEMON_TABLE)
+    List<User> getAllPokemons();
+
+    @Query("SELECT * FROM " + AppDatabase.POKEMON_TABLE + "  WHERE mUserId = :userId")
+    User getPokemonByUserId(int userId);
 
 }

@@ -1,9 +1,13 @@
 package com.example.cst438_project_1;
 
+import android.widget.Toast;
+
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.example.cst438_project_1.db.AppDatabase;
+
+import java.util.List;
 
 /**
  * This Java file is used with Room to save information to DB
@@ -18,6 +22,7 @@ public class User {
 
     private String mUserName;
     private String mPassword;
+
 
     public User(String mUserName, String mPassword) {
         this.mUserName = mUserName;
