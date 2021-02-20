@@ -61,6 +61,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 save();
+                Toast.makeText(SearchActivity.this, "Pokemon saved!", Toast.LENGTH_SHORT).show();
             }
         });
 
