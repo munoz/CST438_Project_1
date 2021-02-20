@@ -7,6 +7,8 @@ import androidx.room.PrimaryKey;
 import com.example.cst438_project_1.db.AppDatabase;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Objects;
+
 @Entity(tableName = AppDatabase.POKEMON_TABLE)
 public class Pokemon {
     @SerializedName("name")
@@ -84,6 +86,25 @@ public class Pokemon {
     }
 
 //    public String getTypes() { return mTypes; }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pokemon pokemon = (Pokemon) o;
+        return mPokeDbId == pokemon.mPokeDbId &&
+                mUserId == pokemon.mUserId &&
+                mPokeName.equals(pokemon.mPokeName) &&
+                mHeight.equals(pokemon.mHeight) &&
+                mWeight.equals(pokemon.mWeight) &&
+                mPokeId.equals(pokemon.mPokeId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(mPokeName, mHeight, mWeight, mPokeDbId, mUserId, mPokeId);
+    }
 }
 
 

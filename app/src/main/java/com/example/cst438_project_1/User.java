@@ -8,6 +8,7 @@ import androidx.room.PrimaryKey;
 import com.example.cst438_project_1.db.AppDatabase;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * This Java file is used with Room to save information to DB
@@ -51,5 +52,20 @@ public class User {
 
     public void setPassword(String mPassword) {
         this.mPassword = mPassword;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return mUserId == user.mUserId &&
+                mUserName.equals(user.mUserName) &&
+                mPassword.equals(user.mPassword);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(mUserId, mUserName, mPassword);
     }
 }
