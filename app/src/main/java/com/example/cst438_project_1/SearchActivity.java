@@ -87,7 +87,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Pokemon> call, Response<Pokemon> response) {
                 if (!response.isSuccessful()) {
-                    results.setText("Code: " + response.code());
+                    results.setText("Pokemon does not exist");
                     return;
                 }
                 Pokemon pokemonAPI = response.body();
