@@ -19,11 +19,20 @@ public class Pokemon {
     private String mWeight;
     //@SerializedName("types")
     //private String mTypes;
+    @SerializedName("id")
+    private String mPokeId;
 
     @PrimaryKey(autoGenerate = true)
     private int mPokeDbId;
 
     private int mUserId;
+
+    public Pokemon(String name, String height, String weight, String id) {
+        this.mPokeName = name;
+        this.mHeight = height;
+        this.mWeight = weight;
+        this.mPokeId = id;
+    }
 
     public int getPokeDbId() {
         return mPokeDbId;
@@ -41,8 +50,7 @@ public class Pokemon {
         this.mUserId = mUserId;
     }
 
-    @SerializedName("id")
-    private String mPokeId;
+
 
 
     public Pokemon() {
