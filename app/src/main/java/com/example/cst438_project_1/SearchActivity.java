@@ -71,6 +71,7 @@ public class SearchActivity extends AppCompatActivity {
         String search;
         TextView results = (TextView) findViewById(R.id.Results);
 
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://pokeapi.co/api/v2/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -95,8 +96,8 @@ public class SearchActivity extends AppCompatActivity {
                 content += "ID: " + pokemonAPI.getPokeId() + "\n";
                 content += "Height: " + pokemonAPI.getHeight() + "\n";
                 content += "Weight: " + pokemonAPI.getWeight() + "\n";
-//                content += "Types: " + pokemon.getTypes() + "\n";
-                results.append(content);
+
+                results.setText(content);
                 mPokemon = pokemonAPI;
 
 
