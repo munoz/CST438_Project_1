@@ -82,7 +82,6 @@ public class LoginActivity extends AppCompatActivity {
     private boolean checkForUserInDatabase(){
         mUser = mPokedexDAO.getUserByUsername(mUsername);
         if(mUser == null){
-            Toast.makeText(this, "no user " + mUsername + " found", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
